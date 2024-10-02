@@ -1,0 +1,140 @@
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+#game-header {
+    background-color: #007bff;
+}
+
+#game-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.score-table {
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+.team-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#results {
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+#countdown-timer {
+    font-size: 24px;
+    color: red;
+}
+
+/*
+
+HTML:
+1.Create a new file named  index.html   
+2. Add a title "Family Feud Gamr
+3. Create a header with an h1 element containing tect "Family Feud Game
+4. Create a section for the game introduction and include a short paragrpah describing hoe the gamr works
+5. Add a div element eith id"agame container to hold the game interface
+6. Inside the game cintainer create an h2 element for Game Setup
+7. Use anunordered list <ul> to to create  a list 1 answer placeholders each enclosed in li elememys
+8. Crate an input form <form id="answerform" method"POST" that includes an input field for user answersand a submit button
+9. Add a table with a class="score table" todisplay team scores using a header row for a tam names for user answers and submit button
+10. Create aa footer(<footer> with an h3 that reads "Game Over"
+11. Add a button for starting the game using the button ele,emy with the text"Start Game"
+12. Create a result section using a div id="results" where answers and points will appear after submission
+13. Inser a audio tag for background music or sound effects for the game specifying the audio file path https://youtu.be/2ScS7hkp32g?si=s56kWDi6bdmUwKnj
+14. Create a nav element with navigation links for hime, Rues and Leaderboards
+15. Use uv with class'"team controls" where team specific controls like "Pass" or "Play" buttons will be places
+16. Include a label and input fields for player names at the beginning of the game using a form 
+17. Embed an image of a family feud style buzzer using img tag
+18. Add a hiddel div to display a countdown timer before that round starts
+19. Insert a <progress> bar to indicate the time ledt for answering questions
+20. Organize the game content using appropriate HTML5 semantic elements sich as section srticle and aside
+
+
+CSS and bootstrap:
+1.create a file named styles.css and link it in your index.html file
+2.Use Bootstrap's grid system to structure the header and game sections
+3.style the header (#game-header) with a specific primary or secondary background color and center-align the text
+4.Set up a  Bootstrap navbar for navigation links with proper spacing between the links using navbar-nav
+5.Add padding to the game container to give space around the game interface
+6.Style the score table using bootstrap's table class and center-align the team names
+7.set a maximum width for the game container and use margin: auto to center the game on the page
+8. Use Flexbox(display):flex) to horizontally align the game controls.
+9. Add hover effects on  navigation links to change the color when hover using the .nav-link:hover-class
+10.Set a fixed height for the game container using responsive units (vh or vw) to adjust based on screen size 
+11. Style the button elements (#start-game,#submit-answer) using Bootstrap's btn-primary class,applying a border-radius for rounded corners.
+12.Use the :hover-pseudo-class to change the background color of the  game buttons when hovered.
+13.Add box-shadow to the score table to emphasis, making it visually pop out.
+14.Set a font-family of your choice for the entire game such as "Roboto", sans-serifor "Arial",sans-serif
+15.Align the answer form horizontally using flexbox (display:flex) to position the input and button in a row.
+16. Style the hidden countdown timer using font size and color to make it stand out when visible
+17. Ensure the game is responsive by adding Bootstrap's media queries  for small screens.
+18. Use position: relative to ensure elements like the buzzer image are correctly align with the game content
+19.Add background color to the result section (#results) and use padding to give it some space from the content
+20.USe font-weight and text-transform properties to stylize  headings and team names for emphasis
+
+Javascript:
+1. Create a new file named game.js and link it to your index.html file.
+2. Declare variables to track player scores, number of rounds, and current answer.
+3. Create an event listener for the "Start Game" button to initialize the game.
+4. Write a function to validate answers and compare them with pre-stored answers.
+5. Use getElementById to access and manipulate the game's answer form.
+6. Create a function to display correct answers in the results section when the answer is validated.
+7. Implement a countdown timer that begins when the game starts using setInterval().
+8. Write a function to update the player scores in the score table.
+9. Add event listeners to the game buttons to handle submitting answers and starting new rounds.
+10. Use innerHTML to dynamically update the content of the score table and results section.
+11. Add a random function to stimulate game events like "buzzer pressed" during a round.
+12. Implement a game-over function that triggers when all rounds are completed.
+13. Use conditional statements (if and else) to handle whether the player has won the round or loss.
+14. Create a function t o reset the game after all rounds are completed. 
+15. Display an alert message using alert () when incorrect answers are submitted. 
+16. Store player names and other details in variables when the game starts.
+17. Create an object to hold game data like round scores, correct answers, and player names.
+18. Create a function to handle the timing for the buzzer, using setTimeout().
+19. Use the console.log() method to debug the games progress and print messages for each round.
+20. Ensure the game restarts automatically  by re-initializing variables and clearing timeouts at the end.
+
+PHP:
+1. Create a game.php file to handle formsubmissions
+2. Connect the PHP script to a MySQL database to store player scores
+3. Create a database tbale called scores with columns for players names score and game date
+4. Write a php script to insert player  names and scores into the databse after each roound
+5, use PHP's $_POST superglobal to capture the player input when the answer form is submitted
+6. Retrieve store player scores from the fatabse and display them on the leaderboard 
+7. Use mysqli_connect() to establish a connection between PHP and mySQL database
+8. Handle errors in databse connection using die() or custom error messages
+9. Write a function to check whether the player score has been updated correctly in the database
+10 update the leaderboard dynamically by fetching the latest scores adter each round
+11. Use PHP to calidate user inputs from the answe form before inserting them tinto the database
+12. Sanituze user input to avoid SQL injection using prepared statements
+13. Use PHP sessions to store player detail like name and current game status
+14. Write a script to display top scores from the database in descending order
+15. Create a logout freature using PHP's session_destroy() function to end the game sessio
+16. Implement a timer for rounds on the server side using PHP
+17. Write a functio to clear old game data from database after specified time
+18. Create a message system where PHP echoes message like"Game Over"and Round Won" dynamically
+19. Use include() or require() to manage separate PHP files for form handling and database connection
+20. Display an error message when there's an issue with the database connection or player data.     
+*/

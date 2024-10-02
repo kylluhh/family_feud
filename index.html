@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Family Feud Game</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <header id="game-header" class="text-center p-3 bg-primary text-white">
+      <h1>Family Feud Game</h1>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Rules</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Leaderboards</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section>
+      <div class="container" id="game-container">
+        <h2>Game Setup</h2>
+        <p>
+          Welcome to Family Feud! In this game, teams compete to guess the most
+          popular answers to survey questions. Each team takes turns answering
+          questions, and points are awarded for correct answers.
+        </p>
+        <div>
+          <ul>
+            <li>Answer 1: ________________</li>
+            <li>Answer 2: ________________</li>
+            <li>Answer 3: ________________</li>
+            <li>Answer 4: ________________</li>
+            <li>Answer 5: ________________</li>
+            <li>Answer 6: ________________</li>
+          </ul>
+        </div>
+
+        <form id="answer-form" method="POST">
+          <input
+            type="text"
+            id="user-answer"
+            placeholder="Your Answer"
+            required
+          />
+          <button type="submit" id="submit-answer" class="btn btn-primary">
+            Submit
+          </button>
+        </form>
+
+        <table class="table score-table">
+          <thead>
+            <tr>
+              <th>Team Names</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="score-table-body">
+            <tr>
+              <td>Team A</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Team B</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <footer>
+          <h3>Game Over</h3>
+          <button id="start-game" class="btn btn-primary">Start Game</button>
+        </footer>
+
+        <div id="results" class="result-section"></div>
+
+        <audio controls loop>
+          <source
+            src="https://example.com/background-music.mp3"
+            type="audio/mpeg"
+          />
+          Your browser does not support the audio element.
+        </audio>
+
+        <div class="team-controls">
+          <button class="btn btn-secondary">Pass</button>
+          <button class="btn btn-secondary">Play</button>
+        </div>
+
+        <form id="player-names-form">
+          <label for="player1">Player 1 Name:</label>
+          <input type="text" id="player1" required />
+          <label for="player2">Player 2 Name:</label>
+          <input type="text" id="player2" required />
+          <button type="submit" class="btn btn-primary">Submit Names</button>
+        </form>
+
+        <img
+          src="buzzer-image.png"
+          alt="Family Feud Buzzer"
+          class="buzzer-img"
+        />
+
+        <div id="countdown-timer" class="hidden">3</div>
+
+        <progress id="answer-timer" value="0" max="100"></progress>
+      </div>
+    </section>
+
+    <script src="game.js"></script>
+  </body>
+</html>
