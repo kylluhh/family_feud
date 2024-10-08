@@ -1,48 +1,53 @@
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
 }
 
-#game-header {
-    background-color: #007bff;
+button {
+    margin: 10px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
-#game-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
+#buzzer {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 18px;
 }
 
-.score-table {
-    margin-top: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.btn-primary {
-    border-radius: 5px;
-}
-
-.nav-link:hover {
-    color: #007bff;
-}
-
-.team-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-#results {
-    background-color: #f8f9fa;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.hidden {
+.popup {
     display: none;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
 }
 
-#countdown-timer {
-    font-size: 24px;
-    color: red;
+.leaderboard-link {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: blue;
+    text-decoration: none;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #ccc;
+    padding: 10px;
 }
