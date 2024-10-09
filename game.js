@@ -26,25 +26,47 @@ function startGame() {
     if (player1Name && player2Name) {
         document.getElementById('player1Score').innerText = `${player1Name}: 0`;
         document.getElementById('player2Score').innerText = `${player2Name}: 0`;
-        showQuestion();
-        document.querySelector('.answer-section').style.display = 'none';
+        startCountdown(); // Start the countdown before the first question
     } else {
         alert("Please enter names for both players.");
     }
 }
 
+function startCountdown() {
+    let countdownTime = 3; // 3 seconds countdown
+    document.getElementById('countdownTimer').style.display = 'block';
+    const countdownDisplay = document.getElementById('countdown');
+    countdownDisplay.innerText = countdownTime;
+
+    const countdownInterval = setInterval(() => {
+        countdownTime--;
+        countdownDisplay.innerText = countdownTime;
+
+        if (countdownTime <= 0) {
+            clearInterval(countdownInterval);
+            document.getElementById('countdownTimer').style.display = 'none';
+            showQuestion(); // Show the question after countdown
+        }
+    }, 1000);
+}
+
 function showQuestion() {
     document.getElementById('question').innerText = questions[currentQuestionIndex].question;
+    startTimer(); // Start the timer when the question is shown
 }
 
 function startTimer() {
     let time = timerDuration;
     document.getElementById('timer').style.display = 'block';
     document.getElementById('timer').innerText = `Time left: ${time} seconds`;
+    document.getElementById('timeProgress').style.display = 'block';
+    document.getElementById('timeProgress').value = time;
 
     timer = setInterval(() => {
         time--;
         document.getElementById('timer').innerText = `Time left: ${time} seconds`;
+        document.getElementById('timeProgress').value = time;
+
         if (time <= 0) {
             clearInterval(timer);
             alert('Time is up!');
@@ -55,7 +77,6 @@ function startTimer() {
 
 function showPopup() {
     document.getElementById('answerPopup').style.display = 'block';
-    startTimer(); // Start the timer when buzzer is clicked
 }
 
 function choosePlayer(player) {
@@ -77,10 +98,18 @@ function checkAnswer() {
             document.getElementById('player2Score').innerText = `${document.getElementById('player2').value}: ${player2Score}`;
         }
 
+        // Check if either player has won
+        if (player1Score >= 100 || player2Score >= 100) {
+            clearInterval(timer);
+            showWinnerPopup();
+            return; // Stop the loop if there's a winner
+        }
+
         // Record the answer in the database with timestamp
         recordAnswer(playerTurn, answer);
     }
 
+    clearInterval(timer); // Stop the timer when answer is submitted
     nextQuestion();
 }
 
@@ -101,6 +130,18 @@ function endGame() {
     // Optionally, you could redirect to the leaderboard or reset the game
 }
 
+function showWinnerPopup() {
+    const winner = player1Score >= 100 ? document.getElementById('player1').value : document.getElementById('player2').value;
+    const winnerScore = player1Score >= 100 ? player1Score : player2Score;
+    
+    alert(`${winner} wins with a score of ${winnerScore}!`);
+
+    // Record the winner on the leaderboard
+    recordWinner(winner, winnerScore);
+    
+    // Optionally, reset or redirect to leaderboard
+}
+
 // AJAX call to submit the answer to the server
 function recordAnswer(player, answer) {
     const question_id = currentQuestionIndex + 1; // assuming question_id is based on index
@@ -119,3 +160,34 @@ function recordAnswer(player, answer) {
     };
     xhr.send(`player=${player}&answer=${answer}&question_id=${question_id}&player1Name=${player1Name}&player2Name=${player2Name}`);
 }
+
+// AJAX call to record the winner on the leaderboard
+function recordWinner(winnerName, score) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'record_winner.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log('Winner recorded successfully');
+        } else {
+            console.error('Error recording winner');
+        }
+    };
+    xhr.send(`winnerName=${winnerName}&score=${score}`);
+}
+
+function showWinnerPopup() {
+    const player1Name = document.getElementById('player1').value;
+    const player2Name = document.getElementById('player2').value;
+
+    const winner = player1Score >= 100 ? player1Name : player2Name;
+    const winnerScore = player1Score >= 100 ? player1Score : player2Score;
+    
+    alert(`${winner} wins with a score of ${winnerScore}!`);
+
+    // Record the winner on the leaderboard
+    recordWinner(winner, winnerScore);
+    
+    // Optionally, reset or redirect to leaderboard
+}
+
