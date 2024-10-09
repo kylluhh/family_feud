@@ -3,11 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game</title>
+    <title>Family Feud Game</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <h1>Family Feud Game</h1>
+
+    <!-- Game Introduction Section -->
+    <section class="game-introduction">
+      <h2>Game Introduction</h2>
+      <p>
+        Welcome to the Family Feud Game! In this game, two players will compete to guess the most popular answers to survey questions. Each player takes turns pressing the buzzer to answer questions, and they have a limited time to respond. The player with the highest score at the end of the game wins!
+      </p>
+    </section>
 
     <div class="player-section">
       <label for="player1">Player 1 Name:</label>
@@ -19,14 +27,26 @@
 
     <button id="startGame">START GAME</button>
 
-    <div class="question-section">
-      <h2 id="question"></h2>
+    <div id="countdownTimer" style="display: none; font-size: 24px">
+      Starting in <span id="countdown">3</span> seconds...
     </div>
 
-    <button id="buzzer">BUZZER</button>
-    <div id="timer" style="display: none; font-size: 24px">
-      Time left: 15 seconds
+    <div class="question-section">
+      <h2 id="question"></h2>
+      <progress
+        id="timeProgress"
+        value="0"
+        max="15"
+        style="display: none"
+      ></progress>
+      <div id="timer" style="display: none; font-size: 24px">
+        Time left: 15 seconds
+      </div>
     </div>
+
+    <button id="buzzer">
+      <img src="buzzer.png" alt="Buzzer" style="max-width: 100%; height: auto;" />
+    </button>
 
     <div id="answerPopup" class="popup">
       <p>Who will answer?</p>
